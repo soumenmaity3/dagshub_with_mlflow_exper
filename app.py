@@ -99,7 +99,13 @@ if __name__ == "__main__":
             # mlflow.sklearn.log_model(
             #     lr, "model", registered_model_name="ElasticnetWineModel"
             # )
-            mlflow.sklearn.log_model(lr, "model")
+            mlflow.sklearn.log_model(
+            sk_model=lr,
+            artifact_path="model",
+            registered_model_name=None,   # prevent registry use
+            await_registration_for=0      # stop MLflow from calling registry API
+            )
+
 
         else:
             mlflow.sklearn.log_model(lr, "model")
